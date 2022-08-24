@@ -4,7 +4,7 @@ import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
 import { app } from '../app';
-import Example from '../database/models/ExampleModel';
+import users from '../database/models/users'
 
 import { Response } from 'superagent';
 
@@ -12,34 +12,26 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('Seu teste', () => {
-  /**
-   * Exemplo do uso de stubs com tipos
-   */
+describe('Test login route Post response', () => {
 
-  // let chaiHttpResponse: Response;
+  let chaiHttpResponse: Response;
 
-  // before(async () => {
-  //   sinon
-  //     .stub(Example, "findOne")
-  //     .resolves({
-  //       ...<Seu mock>
-  //     } as Example);
-  // });
-
-  // after(()=>{
-  //   (Example.findOne as sinon.SinonStub).restore();
-  // })
-
-  // it('...', async () => {
-  //   chaiHttpResponse = await chai
-  //      .request(app)
-  //      ...
-
-  //   expect(...)
-  // });
-
-  it('Seu sub-teste', () => {
-    expect(false).to.be.eq(true);
+  beforeEach(async () => {
+    sinon.stub(users, 'findOne').resolves(emptyEmail as users)
   });
+
+  afterEach(() => {
+    sinon.restore();
+  });
+
+  const emptyEmail = {
+    password: "secret"
+  }
+
+  it('email fild empty status', async () => {
+    chaiHttpResponse = await  chai.request(app)
+    .post('/login')
+    .send(emptyEmail)
+    expect(chaiHttpResponse.status).to.be.equal(400)
+  })
 });
