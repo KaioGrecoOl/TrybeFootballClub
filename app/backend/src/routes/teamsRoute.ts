@@ -1,8 +1,11 @@
 import * as express from 'express';
-import teamsController from '../controllers/teamsController';
+import TeamsController from '../controllers/teamsController';
+import TeamsService from '../services/teamsService';
 
+const teamServic = new TeamsService();
+const teamController = new TeamsController(teamServic);
 const teamsRoute = express.Router();
 
-teamsRoute.get('/teams', teamsController.getAllTeamsController);
+teamsRoute.get('/teams', teamController.getAllTeamsController);
 
 export default teamsRoute;
