@@ -1,15 +1,12 @@
 import * as express from 'express';
 import loginController from '../controllers/loginController';
-import { validateEmail,
-  validatePassword,
-} from '../middlewares/loginMiddleware';
+import validateEmailandPassword from '../middlewares/loginMiddleware';
 
 const loginRoute = express.Router();
 
 loginRoute.post(
   '/login',
-  validateEmail,
-  validatePassword,
+  validateEmailandPassword,
   loginController.getLogin,
 );
 export default loginRoute;

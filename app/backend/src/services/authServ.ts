@@ -24,9 +24,7 @@ export default class Author {
     const user: any = await Users.findOne({ where: { email } });
 
     if (!user) {
-      const e = new Error('User doesnt exist');
-      e.name = 'UnauthorizedError';
-      throw e;
+      return 'undefined';
     }
 
     passwordServ.checkPassword(password, user.password);
