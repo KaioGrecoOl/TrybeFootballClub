@@ -1,14 +1,15 @@
 import { Request, Response } from 'express';
-import teams from '../database/models/teams';
-import Iteams from '../interfaces/Iteams';
+import teamsService from '../services/teamsService';
 
 export default class TeamsController {
-  constructor(private teamsService: Iteams<teams>) {
+  static getAllTeamsController = async (req: Request, res: Response) => {
+    const team = await teamsService.getAllTeamsService();
+    return res.status(200).json(team);
+  };
 
-  }
-
-  getAllTeamsController = async (req: Request, res: Response) => {
-    const team = await this.teamsService.getAllTeamsService();
+  static getByIdController = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const team = await teamsService.getByIdService(Number(id));
     return res.status(200).json(team);
   };
 }

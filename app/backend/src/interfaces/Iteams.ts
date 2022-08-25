@@ -1,3 +1,4 @@
-export default interface Iteams<T> {
-  getAllTeamsService(): Promise<T[]>
+export default interface Iteams{
+  id: number,
+  teamName: string,
 }
