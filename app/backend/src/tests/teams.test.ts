@@ -2,9 +2,9 @@ import * as sinon from 'sinon';
 import * as chai from 'chai';
 // @ts-ignore
 import chaiHttp = require('chai-http');
+import teams from '../database/models/teams'
 
 import { app } from '../app';
-import teams from '../database/models/users'
 
 import { Response } from 'superagent';
 
@@ -13,6 +13,7 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 describe('Test teams route get', () => {
+  afterEach(() => sinon.restore());
 
   let chaiHttpResponse: Response;
 
