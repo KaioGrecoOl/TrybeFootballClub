@@ -10,7 +10,9 @@ class App {
     this.app = express();
 
     this.config();
-
+    this.app.use(matchesRoute);
+    this.app.use(loginRoute);
+    this.app.use(teamsRoute);
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
   }
@@ -25,9 +27,6 @@ class App {
 
     this.app.use(express.json());
     this.app.use(accessControl);
-    this.app.use(loginRoute);
-    this.app.use(teamsRoute);
-    this.app.use(matchesRoute);
   }
 
   public start(PORT: string | number):void {

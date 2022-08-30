@@ -7,6 +7,7 @@ export default class Token {
       expiresIn: '6d',
       algorithm: 'HS256',
     });
+
     return token;
   };
   // Consegui desenvolver a função abaixo assistindo a aula do Calaça do dia 24.3- Node-js e JWT
