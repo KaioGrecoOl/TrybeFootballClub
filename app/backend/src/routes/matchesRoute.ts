@@ -5,6 +5,10 @@ const matchesRoute = express.Router();
 
 matchesRoute.get('/matches', matchesController.getAllMatchesController);
 matchesRoute.post('/matches', matchesController.createMatchesController);
-matchesRoute.patch('/matches/:id/finish', matchesController.updateMatchesProgreesController);
+matchesRoute.patch(
+  '/matches/:id/finish',
+  matchesController.updateMatchesProgreesController,
+);
+matchesRoute.patch('/matches/:id', matchesController.updateMatchesInProgrees);
 
 export default matchesRoute;

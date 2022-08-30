@@ -1,6 +1,7 @@
 import { Imatchs } from '../interfaces/Imatches';
 import matches from '../database/models/matches';
 import teams from '../database/models/teams';
+import { ImatchProgress } from '../interfaces/ImatchProgress';
 
 export default class MatchesService {
   static getAllMAtchesService = async (): Promise<matches[]> => {
@@ -40,8 +41,18 @@ export default class MatchesService {
     });
   };
 
-  static async updateMatchesProgressService(id: number) {
+  static updateMatchesProgressService = async (id: number) => {
     await matches.findByPk(id);
     await matches.update({ inProgress: false }, { where: { id } });
-  }
+  };
+
+  static updateMatchesInProgress = async (data: ImatchProgress, id: number) => {
+    await matches.findByPk(id);
+    await matches.update(
+      {
+        homeTeamGoals: data.homeTeamGoals,
+        awayTeamGoals: data.awayTeamGoals },
+      { where: { id } },
+    );
+  };
 }

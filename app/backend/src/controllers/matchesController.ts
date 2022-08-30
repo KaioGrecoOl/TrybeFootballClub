@@ -24,4 +24,9 @@ export default class MatchesController {
     await matchesService.updateMatchesProgressService(+req.params.id);
     res.status(200).json({ message: 'Finished' });
   };
+
+  static updateMatchesInProgrees = async (req: Request, res: Response) => {
+    await matchesService.updateMatchesInProgress(req.body, +req.params.id);
+    res.status(200).json({ message: 'Updated' });
+  };
 }
