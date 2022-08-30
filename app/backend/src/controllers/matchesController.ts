@@ -13,6 +13,6 @@ export default class MatchesController {
       req.body.awayTeam,
       req.body.homeTeam,
     );
-    return res.status(200).json(createMatch);
+    return res.status(201).json(createMatch);
   };
 }
