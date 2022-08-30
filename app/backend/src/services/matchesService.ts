@@ -29,7 +29,7 @@ export default class MatchesService {
     const homeTeam = await matches.findByPk(teamH);
     const awayTeam = await matches.findByPk(teamW);
     if (!homeTeam || !awayTeam) {
-      throw Object.assign(new Error('There is no team with such id!'), { status: 401 });
+      throw Object.assign(new Error('There is no team with such id!'), { status: 404 });
     }
     return matches.create({
       homeTeam: data.homeTeam,
@@ -38,6 +38,10 @@ export default class MatchesService {
       awayTeamGoals: data.awayTeamGoals,
       inProgress: true,
     });
-    // console.log(createMatch);
   };
+
+  static async updateMatchesProgressService(id: number) {
+    await matches.findByPk(id);
+    await matches.update({ inProgress: false }, { where: { id } });
+  }
 }
