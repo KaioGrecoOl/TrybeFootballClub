@@ -30,7 +30,7 @@ export default class MatchesService {
     const homeTeam = await matches.findByPk(teamH);
     const awayTeam = await matches.findByPk(teamW);
     if (!homeTeam || !awayTeam) {
-      throw Object.assign(new Error('There is no team with such id!'), { status: 404 });
+      return 'There is no such id';
     }
     return matches.create({
       homeTeam: data.homeTeam,
