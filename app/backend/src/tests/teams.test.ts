@@ -71,7 +71,7 @@ describe('Test teams route get', () => {
     ];
     chaiHttpResponse = await chai.request(app)
     .get('/teams')
-    .send(teams)
+    .send(teams)  
     expect(chaiHttpResponse.status).to.be.equal(200)
   })
 

@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
+// import jwtToken from '../services/jwtToken';
 
 const authorizations = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -14,5 +15,4 @@ const authorizations = async (req: Request, res: Response, next: NextFunction) =
     return res.status(401).json({ message: 'Token must be a valid token' });
   }
 };
-
 export default authorizations;
