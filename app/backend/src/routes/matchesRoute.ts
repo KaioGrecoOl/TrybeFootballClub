@@ -1,11 +1,11 @@
 import * as express from 'express';
 import matchesController from '../controllers/matchesController';
-// import authorizations from '../middlewares/authorizationMiddleware';
+import authorizations from '../middlewares/authorizationMiddleware';
 
 const matchesRoute = express.Router();
 
 matchesRoute.get('/matches', matchesController.getAllMatchesController);
-matchesRoute.post('/matches', matchesController.createMatchesController);
+matchesRoute.post('/matches', authorizations, matchesController.createMatchesController);
 matchesRoute.patch(
   '/matches/:id/finish',
   matchesController.updateMatchesProgreesController,
